@@ -16,6 +16,6 @@ public class Test001 extends BaseTest{
 
     @Test
     public void test_001(){
-        dao.test();
+        dao.test_001();
     }
 }
