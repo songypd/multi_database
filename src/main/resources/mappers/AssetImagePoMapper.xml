@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.duodatabases.mapper.AssetImagePoMapper">
+  <resultMap id="BaseResultMap" type="com.example.duodatabases.model.AssetImagePo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="asset_id" jdbcType="BIGINT" property="assetId" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="image_type" jdbcType="INTEGER" property="imageType" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, asset_id, image_url, image_type, status, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from asset_image
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from asset_image
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.duodatabases.model.AssetImagePo">
+    insert into asset_image (id, asset_id, image_url, 
+      image_type, status, create_time, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{assetId,jdbcType=BIGINT}, #{imageUrl,jdbcType=VARCHAR}, 
+      #{imageType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.duodatabases.model.AssetImagePo">
+    insert into asset_image
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="assetId != null">
+        asset_id,
+      </if>
+      <if test="imageUrl != null">
+        image_url,
+      </if>
+      <if test="imageType != null">
+        image_type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="assetId != null">
+        #{assetId,jdbcType=BIGINT},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imageType != null">
+        #{imageType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.duodatabases.model.AssetImagePo">
+    update asset_image
+    <set>
+      <if test="assetId != null">
+        asset_id = #{assetId,jdbcType=BIGINT},
+      </if>
+      <if test="imageUrl != null">
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imageType != null">
+        image_type = #{imageType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.duodatabases.model.AssetImagePo">
+    update asset_image
+    set asset_id = #{assetId,jdbcType=BIGINT},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      image_type = #{imageType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

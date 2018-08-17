@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.duodatabases.mapper.AssetsPhasePoMapper">
+  <resultMap id="BaseResultMap" type="com.example.duodatabases.model.AssetsPhasePo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="loan_id" jdbcType="BIGINT" property="loanId" />
+    <result column="planned_term_amount" jdbcType="DECIMAL" property="plannedTermAmount" />
+    <result column="planned_term_interest" jdbcType="DECIMAL" property="plannedTermInterest" />
+    <result column="planned_term_principle" jdbcType="DECIMAL" property="plannedTermPrinciple" />
+    <result column="cushion_interest" jdbcType="DECIMAL" property="cushionInterest" />
+    <result column="transaction_fee" jdbcType="DECIMAL" property="transactionFee" />
+    <result column="fee_model" jdbcType="BIT" property="feeModel" />
+    <result column="remaining_principal" jdbcType="DECIMAL" property="remainingPrincipal" />
+    <result column="due_date" jdbcType="TIMESTAMP" property="dueDate" />
+    <result column="account_date" jdbcType="TIMESTAMP" property="accountDate" />
+    <result column="phase_number" jdbcType="SMALLINT" property="phaseNumber" />
+    <result column="is_repaid" jdbcType="BIT" property="isRepaid" />
+    <result column="repay_date" jdbcType="TIMESTAMP" property="repayDate" />
+    <result column="repaid_amount" jdbcType="DECIMAL" property="repaidAmount" />
+    <result column="repaid_principle" jdbcType="DECIMAL" property="repaidPrinciple" />
+    <result column="repaid_interest" jdbcType="DECIMAL" property="repaidInterest" />
+    <result column="overdue_days" jdbcType="SMALLINT" property="overdueDays" />
+    <result column="overdue_fee" jdbcType="DECIMAL" property="overdueFee" />
+    <result column="overdue_interest" jdbcType="DECIMAL" property="overdueInterest" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, loan_id, planned_term_amount, planned_term_interest, planned_term_principle, 
+    cushion_interest, transaction_fee, fee_model, remaining_principal, due_date, account_date, 
+    phase_number, is_repaid, repay_date, repaid_amount, repaid_principle, repaid_interest, 
+    overdue_days, overdue_fee, overdue_interest, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from assets_phase
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from assets_phase
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.duodatabases.model.AssetsPhasePo">
+    insert into assets_phase (id, loan_id, planned_term_amount, 
+      planned_term_interest, planned_term_principle, 
+      cushion_interest, transaction_fee, fee_model, 
+      remaining_principal, due_date, account_date, 
+      phase_number, is_repaid, repay_date, 
+      repaid_amount, repaid_principle, repaid_interest, 
+      overdue_days, overdue_fee, overdue_interest, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{loanId,jdbcType=BIGINT}, #{plannedTermAmount,jdbcType=DECIMAL}, 
+      #{plannedTermInterest,jdbcType=DECIMAL}, #{plannedTermPrinciple,jdbcType=DECIMAL}, 
+      #{cushionInterest,jdbcType=DECIMAL}, #{transactionFee,jdbcType=DECIMAL}, #{feeModel,jdbcType=BIT}, 
+      #{remainingPrincipal,jdbcType=DECIMAL}, #{dueDate,jdbcType=TIMESTAMP}, #{accountDate,jdbcType=TIMESTAMP}, 
+      #{phaseNumber,jdbcType=SMALLINT}, #{isRepaid,jdbcType=BIT}, #{repayDate,jdbcType=TIMESTAMP}, 
+      #{repaidAmount,jdbcType=DECIMAL}, #{repaidPrinciple,jdbcType=DECIMAL}, #{repaidInterest,jdbcType=DECIMAL}, 
+      #{overdueDays,jdbcType=SMALLINT}, #{overdueFee,jdbcType=DECIMAL}, #{overdueInterest,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.duodatabases.model.AssetsPhasePo">
+    insert into assets_phase
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="loanId != null">
+        loan_id,
+      </if>
+      <if test="plannedTermAmount != null">
+        planned_term_amount,
+      </if>
+      <if test="plannedTermInterest != null">
+        planned_term_interest,
+      </if>
+      <if test="plannedTermPrinciple != null">
+        planned_term_principle,
+      </if>
+      <if test="cushionInterest != null">
+        cushion_interest,
+      </if>
+      <if test="transactionFee != null">
+        transaction_fee,
+      </if>
+      <if test="feeModel != null">
+        fee_model,
+      </if>
+      <if test="remainingPrincipal != null">
+        remaining_principal,
+      </if>
+      <if test="dueDate != null">
+        due_date,
+      </if>
+      <if test="accountDate != null">
+        account_date,
+      </if>
+      <if test="phaseNumber != null">
+        phase_number,
+      </if>
+      <if test="isRepaid != null">
+        is_repaid,
+      </if>
+      <if test="repayDate != null">
+        repay_date,
+      </if>
+      <if test="repaidAmount != null">
+        repaid_amount,
+      </if>
+      <if test="repaidPrinciple != null">
+        repaid_principle,
+      </if>
+      <if test="repaidInterest != null">
+        repaid_interest,
+      </if>
+      <if test="overdueDays != null">
+        overdue_days,
+      </if>
+      <if test="overdueFee != null">
+        overdue_fee,
+      </if>
+      <if test="overdueInterest != null">
+        overdue_interest,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="loanId != null">
+        #{loanId,jdbcType=BIGINT},
+      </if>
+      <if test="plannedTermAmount != null">
+        #{plannedTermAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="plannedTermInterest != null">
+        #{plannedTermInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="plannedTermPrinciple != null">
+        #{plannedTermPrinciple,jdbcType=DECIMAL},
+      </if>
+      <if test="cushionInterest != null">
+        #{cushionInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="transactionFee != null">
+        #{transactionFee,jdbcType=DECIMAL},
+      </if>
+      <if test="feeModel != null">
+        #{feeModel,jdbcType=BIT},
+      </if>
+      <if test="remainingPrincipal != null">
+        #{remainingPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="dueDate != null">
+        #{dueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountDate != null">
+        #{accountDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phaseNumber != null">
+        #{phaseNumber,jdbcType=SMALLINT},
+      </if>
+      <if test="isRepaid != null">
+        #{isRepaid,jdbcType=BIT},
+      </if>
+      <if test="repayDate != null">
+        #{repayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repaidAmount != null">
+        #{repaidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="repaidPrinciple != null">
+        #{repaidPrinciple,jdbcType=DECIMAL},
+      </if>
+      <if test="repaidInterest != null">
+        #{repaidInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueDays != null">
+        #{overdueDays,jdbcType=SMALLINT},
+      </if>
+      <if test="overdueFee != null">
+        #{overdueFee,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueInterest != null">
+        #{overdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.duodatabases.model.AssetsPhasePo">
+    update assets_phase
+    <set>
+      <if test="loanId != null">
+        loan_id = #{loanId,jdbcType=BIGINT},
+      </if>
+      <if test="plannedTermAmount != null">
+        planned_term_amount = #{plannedTermAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="plannedTermInterest != null">
+        planned_term_interest = #{plannedTermInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="plannedTermPrinciple != null">
+        planned_term_principle = #{plannedTermPrinciple,jdbcType=DECIMAL},
+      </if>
+      <if test="cushionInterest != null">
+        cushion_interest = #{cushionInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="transactionFee != null">
+        transaction_fee = #{transactionFee,jdbcType=DECIMAL},
+      </if>
+      <if test="feeModel != null">
+        fee_model = #{feeModel,jdbcType=BIT},
+      </if>
+      <if test="remainingPrincipal != null">
+        remaining_principal = #{remainingPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="dueDate != null">
+        due_date = #{dueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountDate != null">
+        account_date = #{accountDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phaseNumber != null">
+        phase_number = #{phaseNumber,jdbcType=SMALLINT},
+      </if>
+      <if test="isRepaid != null">
+        is_repaid = #{isRepaid,jdbcType=BIT},
+      </if>
+      <if test="repayDate != null">
+        repay_date = #{repayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repaidAmount != null">
+        repaid_amount = #{repaidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="repaidPrinciple != null">
+        repaid_principle = #{repaidPrinciple,jdbcType=DECIMAL},
+      </if>
+      <if test="repaidInterest != null">
+        repaid_interest = #{repaidInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueDays != null">
+        overdue_days = #{overdueDays,jdbcType=SMALLINT},
+      </if>
+      <if test="overdueFee != null">
+        overdue_fee = #{overdueFee,jdbcType=DECIMAL},
+      </if>
+      <if test="overdueInterest != null">
+        overdue_interest = #{overdueInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.duodatabases.model.AssetsPhasePo">
+    update assets_phase
+    set loan_id = #{loanId,jdbcType=BIGINT},
+      planned_term_amount = #{plannedTermAmount,jdbcType=DECIMAL},
+      planned_term_interest = #{plannedTermInterest,jdbcType=DECIMAL},
+      planned_term_principle = #{plannedTermPrinciple,jdbcType=DECIMAL},
+      cushion_interest = #{cushionInterest,jdbcType=DECIMAL},
+      transaction_fee = #{transactionFee,jdbcType=DECIMAL},
+      fee_model = #{feeModel,jdbcType=BIT},
+      remaining_principal = #{remainingPrincipal,jdbcType=DECIMAL},
+      due_date = #{dueDate,jdbcType=TIMESTAMP},
+      account_date = #{accountDate,jdbcType=TIMESTAMP},
+      phase_number = #{phaseNumber,jdbcType=SMALLINT},
+      is_repaid = #{isRepaid,jdbcType=BIT},
+      repay_date = #{repayDate,jdbcType=TIMESTAMP},
+      repaid_amount = #{repaidAmount,jdbcType=DECIMAL},
+      repaid_principle = #{repaidPrinciple,jdbcType=DECIMAL},
+      repaid_interest = #{repaidInterest,jdbcType=DECIMAL},
+      overdue_days = #{overdueDays,jdbcType=SMALLINT},
+      overdue_fee = #{overdueFee,jdbcType=DECIMAL},
+      overdue_interest = #{overdueInterest,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
